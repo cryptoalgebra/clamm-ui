@@ -16,9 +16,11 @@ const SwapParams = ({
     derivedSwap,
     smartTrade,
     isSmartTradeLoading,
+    pluginFee
 }: {
     derivedSwap: IDerivedSwapInfo;
     smartTrade: SmartRouterTrade<TradeType>;
+    pluginFee: number | undefined;
     isSmartTradeLoading: boolean;
 }) => {
     const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +34,7 @@ const SwapParams = ({
 
     const { dynamicFeePlugin } = usePoolPlugins(poolAddress);
 
-    const { fee, fees } = useOverrideFee(smartTrade);
+    const { fee, fees } = useOverrideFee(smartTrade, pluginFee);
 
     const priceImpact = useMemo(() => {
         if (!smartTrade) return undefined;
@@ -52,10 +54,10 @@ const SwapParams = ({
                     className="flex items-center w-full text-md mb-1 text-center text-black bg-card-dark py-1 px-3 rounded-lg"
                     onClick={() => toggleExpanded(!isExpanded)}
                 >
-                    {fee ? (
+                    {fee !== undefined ? (
                         <div className="rounded select-none pointer px-1.5 py-1 flex items-center relative">
                             {dynamicFeePlugin && <ZapIcon className="mr-2" strokeWidth={1} stroke="black" fill="black" size={16} />}
-                            <span>{`${fee?.toFixed(4)}% fee`}</span>
+                            <span>{`${fee === 0 ? fee: fee?.toFixed(4)}% fee`}</span>
                         </div>
                     ) : (
                         <div className="rounded select-none px-1.5 py-1 flex items-center relative">

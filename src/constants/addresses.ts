@@ -32,12 +32,12 @@ export const ALGEBRA_QUOTER: Record<number, Address> = {
 };
 
 export const ALGEBRA_QUOTER_V2: Record<number, Address> = {
-    [ChainId.Base]: "0xe0e840C629402AB33433D00937Fe065634b1B1Af",
+    [ChainId.Base]: "0xb1fB5afCD690b5E601172cB2cC766Bcc789DA387",
     [ChainId.BaseSepolia]: "0x4e73E421480a7E0C24fB3c11019254edE194f736",
 };
 
 export const ALGEBRA_ROUTER: Record<number, Address> = {
-    [ChainId.Base]: "0x5Cd40c7E21A15E7FC2503Fffd77cF70c60628F6C",
+    [ChainId.Base]: "0xb57366482Cd045CECB6b54D5162B64Fc1Be429b5",
     [ChainId.BaseSepolia]: "0x4b2A38344b9aAc2F4e82130f35F1630C80ED94Bb",
 };
 

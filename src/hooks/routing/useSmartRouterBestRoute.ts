@@ -17,6 +17,7 @@ import useDebounce from "../common/useDebounce";
 
 import { useCommonPools } from "./useRoutingPools";
 import usePreviousValue from "@/hooks/uitls/usePreviousValue.ts";
+import { usePluginData } from "./usePluginData";
 
 const REFRESH_TIMEOUT = 15_000;
 
@@ -71,6 +72,8 @@ export function useSmartRouterBestRoute(
     const deferQuotientRaw = useDeferredValue(amount?.quotient?.toString());
     const deferQuotient = useDebounce(deferQuotientRaw, 500);
 
+    const { pluginData, fee } =  usePluginData()
+
     const {
         data: trade,
         status,
@@ -92,6 +95,8 @@ export function useSmartRouterBestRoute(
             ALLOWED_VERSIONS,
             isSplit,
             isMultihop,
+            pluginData,
+            account
         ],
         queryFn: async ({ signal }) => {
             if (!amount || !amount.currency || !outputCurrency || !deferQuotient) {
@@ -108,12 +113,15 @@ export function useSmartRouterBestRoute(
                     {
                         gasPriceWei: () => SmartRouter.publicClient[outputCurrency.chainId as 8453 | 84532].getGasPrice(),
                         maxHops: isMultihop ? 2 : 1,
-                        maxSplits: isSplit ? 3 : 0,
+                        // maxSplits: isSplit ? 3 : 0,
+                        maxSplits: 0,
                         poolProvider,
                         quoteProvider: SmartRouter.quoteProvider[outputCurrency.chainId as 8453 | 84532],
                         quoterOptimization: true,
-                        distributionPercent: 10,
+                        distributionPercent: 100,
                         signal,
+                        pluginData,
+                        account
                     }
                 );
 
@@ -131,6 +139,7 @@ export function useSmartRouterBestRoute(
                               BigInt(allowedSlippage.denominator.toString())
                           ),
                           deadlineOrPreviousBlockhash: Date.now() + txDeadline * 1000,
+                          pluginData
                       })
                     : { value: undefined, calldata: undefined };
 
@@ -178,6 +187,7 @@ export function useSmartRouterBestRoute(
     return {
         refresh,
         trade,
+        pluginFee: fee,
         isLoading: isLoading || loading,
         isStale: trade?.blockNumber !== blockNumber,
         error: error as Error | undefined,

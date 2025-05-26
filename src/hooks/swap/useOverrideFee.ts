@@ -6,7 +6,7 @@ import { SmartRouterTrade } from "@cryptoalgebra/router-custom-pools-and-sliding
 import { useEffect, useState } from "react";
 import { useChainId } from "wagmi";
 
-export function useOverrideFee(smartTrade: SmartRouterTrade<TradeType>) {
+export function useOverrideFee(smartTrade: SmartRouterTrade<TradeType>, managedPluginFee: number | undefined) {
     const [overrideFees, setOverrideFees] = useState<{
         fee: number | undefined;
         fees: number[][];
@@ -35,6 +35,11 @@ export function useOverrideFee(smartTrade: SmartRouterTrade<TradeType>) {
                     const amountOut = route.amountOutList?.[idx] || 0n;
 
                     if (pool.type !== 1) continue;
+
+                    if (pool.address.toLowerCase() === '0x0fe050767567c1cdafc16e3cd66e6887294b7bf4' && managedPluginFee) {
+                        fees.push([0])
+                        continue
+                    }
 
                     const isZeroToOne = split[0].wrapped.sortsBefore(split[1].wrapped);
 
@@ -96,7 +101,7 @@ export function useOverrideFee(smartTrade: SmartRouterTrade<TradeType>) {
         }
 
         getFees();
-    }, [smartTrade, chainId]);
+    }, [smartTrade, managedPluginFee, chainId]);
 
     return overrideFees;
 }

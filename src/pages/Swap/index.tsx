@@ -49,6 +49,7 @@ const SwapPage = ({ type }: SwapPageProps) => {
                             <SwapParams
                                 derivedSwap={derivedSwap}
                                 smartTrade={smartTrade.trade?.bestTrade}
+                                pluginFee={smartTrade.pluginFee}
                                 isSmartTradeLoading={smartTrade.isLoading}
                             />
                         )}
