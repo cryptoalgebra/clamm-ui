@@ -119,7 +119,7 @@ const LimitOrderButton = ({
 
     return (
         <Button
-            disabled={disabled || isPlaceLoading || approvalState === ApprovalState.PENDING}
+            disabled={disabled || isPlaceLoading || approvalState === ApprovalState.PENDING || !isReady}
             onClick={() => {
                 console.log(
                     "[PLACE LIMIT ORDER]",

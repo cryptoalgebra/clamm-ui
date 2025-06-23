@@ -6,7 +6,6 @@ import { WagmiConfig } from "wagmi";
 import Layout from "@/components/common/Layout";
 
 import BaseLogo from "@/assets/base-logo.jpg";
-import { base } from "viem/chains";
 import { defineChain } from "viem";
 
 const baseSepolia = /*#__PURE__*/ defineChain({
@@ -36,6 +35,49 @@ const baseSepolia = /*#__PURE__*/ defineChain({
         multicall3: {
             address: "0xca11bde05977b3631167028862be2a173976ca11",
             blockCreated: 1059647,
+        },
+    },
+});
+
+export const base = /*#__PURE__*/ defineChain({
+    id: 8453,
+    network: "base",
+    name: "Base",
+    nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
+    rpcUrls: {
+        alchemy: {
+            http: ["https://base-mainnet.g.alchemy.com/v2"],
+            webSocket: ["wss://base-mainnet.g.alchemy.com/v2"],
+        },
+        infura: {
+            http: ["https://base-mainnet.infura.io/v3"],
+            webSocket: ["wss://base-mainnet.infura.io/ws/v3"],
+        },
+        default: {
+            http: ["https://base-rpc.publicnode.com"],
+        },
+        public: {
+            http: ["https://base-rpc.publicnode.com"],
+        },
+    },
+    blockExplorers: {
+        blockscout: {
+            name: "Basescout",
+            url: "https://base.blockscout.com",
+        },
+        default: {
+            name: "Basescan",
+            url: "https://basescan.org",
+        },
+        etherscan: {
+            name: "Basescan",
+            url: "https://basescan.org",
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: "0xca11bde05977b3631167028862be2a173976ca11",
+            blockCreated: 5022,
         },
     },
 });
