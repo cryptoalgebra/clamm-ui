@@ -113,12 +113,12 @@ export function useSmartRouterBestRoute(
                     {
                         gasPriceWei: () => SmartRouter.publicClient[outputCurrency.chainId as 8453 | 84532].getGasPrice(),
                         maxHops: isMultihop ? 2 : 1,
-                        // maxSplits: isSplit ? 3 : 0,
-                        maxSplits: 0,
+                        maxSplits: isSplit ? 3 : 0,
+                        // maxSplits: 0,
                         poolProvider,
                         quoteProvider: SmartRouter.quoteProvider[outputCurrency.chainId as 8453 | 84532],
                         quoterOptimization: true,
-                        distributionPercent: 100,
+                        distributionPercent: 50,
                         signal,
                         pluginData,
                         account
@@ -150,6 +150,7 @@ export function useSmartRouterBestRoute(
                     value,
                 };
             } catch (error) {
+                console.log(error)
                 return {
                     bestTrade: undefined,
                     blockNumber: undefined,
