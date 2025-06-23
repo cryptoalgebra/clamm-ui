@@ -163,7 +163,7 @@ const SwapPair = ({ derivedSwap, smartTrade }: { derivedSwap: IDerivedSwapInfo; 
         const inputAmountJSBI = JSBI.BigInt(parsedAmounts[SwapField.INPUT]!.quotient.toString());
         const balanceAmountJSBI = JSBI.BigInt(currencyBalances[SwapField.INPUT]!.quotient.toString());
 
-        if (JSBI.lessThan(inputAmountJSBI, balanceAmountJSBI)) {
+        if (JSBI.lessThan(balanceAmountJSBI, inputAmountJSBI)) {
             derivedSwap.inputError = `Insufficient ${parsedAmounts[SwapField.INPUT]!.currency.symbol} balance`;
         }
     }, [currencyBalances, derivedSwap, parsedAmounts]);
