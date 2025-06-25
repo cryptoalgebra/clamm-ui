@@ -1,6 +1,6 @@
 import { usePool } from "@/hooks/pools/usePool";
 import { usePosition, usePositionInFarming } from "@/hooks/positions/usePositions";
-import { INITIAL_POOL_FEE, Position } from "@cryptoalgebra/custom-pools-sdk";
+import { INITIAL_POOL_FEE } from "@cryptoalgebra/custom-pools-sdk";
 import PositionNFT from "../PositionNFT";
 import { FormattedPosition } from "@/types/formatted-position";
 import { Skeleton } from "@/components/ui/skeleton";
