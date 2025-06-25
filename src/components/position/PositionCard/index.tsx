@@ -16,6 +16,7 @@ import ClosedFarmingCard from "../ClosedFarmingCard";
 import { IncreaseLiquidityModal } from "@/components/modals/IncreaseLiquidityModal";
 import { useCurrency } from "@/hooks/common/useCurrency";
 import { formatAmount } from "@/utils/common/formatAmount";
+import { createUncheckedPosition } from "@/utils/positions/createUncheckedPosition";
 
 interface PositionCardProps {
     selectedPosition: FormattedPosition | undefined;
@@ -40,12 +41,7 @@ const PositionCard = ({ selectedPosition, farming, closedFarmings }: PositionCar
     const positionEntity =
         pool &&
         position &&
-        new Position({
-            pool,
-            liquidity: position.liquidity.toString(),
-            tickLower: Number(position.tickLower),
-            tickUpper: Number(position.tickUpper),
-        });
+        createUncheckedPosition(pool, position.liquidity.toString(), Number(position.tickLower), Number(position.tickUpper));
 
     const mintInfo = useDerivedMintInfo(currencyA, currencyB, position?.pool, INITIAL_POOL_FEE, currencyA, positionEntity || undefined);
 

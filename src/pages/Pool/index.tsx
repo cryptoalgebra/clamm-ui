@@ -25,6 +25,7 @@ import JSBI from "jsbi";
 import { useClients } from "@/hooks/graphql/useClients";
 import { useUserALMVaultsByPool } from "@/hooks/alm/useUserALMVaults";
 import ALMPositionCard from "@/components/position/ALMPositionCard";
+import { createUncheckedPosition } from "@/utils/positions/createUncheckedPosition";
 
 const PoolPage = () => {
     const { address: account } = useAccount();
@@ -77,12 +78,12 @@ const PoolPage = () => {
             .filter(({ pool }) => pool.toLowerCase() === poolId.toLowerCase())
             .map((position) => ({
                 positionId: position.tokenId,
-                position: new Position({
-                    pool: poolEntity,
-                    liquidity: position.liquidity.toString(),
-                    tickLower: Number(position.tickLower),
-                    tickUpper: Number(position.tickUpper),
-                }),
+                position: createUncheckedPosition(
+                    poolEntity,
+                    position.liquidity.toString(),
+                    Number(position.tickLower),
+                    Number(position.tickUpper)
+                ),
             }));
     }, [positions, poolEntity]);
 
