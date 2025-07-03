@@ -157,17 +157,6 @@ const SwapPair = ({ derivedSwap, smartTrade }: { derivedSwap: IDerivedSwapInfo; 
         lastFocusedField,
     ]);
 
-    useEffect(() => {
-        if (!parsedAmounts[SwapField.INPUT] || !currencyBalances[SwapField.INPUT]) return;
-
-        const inputAmountJSBI = JSBI.BigInt(parsedAmounts[SwapField.INPUT]!.quotient.toString());
-        const balanceAmountJSBI = JSBI.BigInt(currencyBalances[SwapField.INPUT]!.quotient.toString());
-
-        if (JSBI.lessThan(balanceAmountJSBI, inputAmountJSBI)) {
-            derivedSwap.inputError = `Insufficient ${parsedAmounts[SwapField.INPUT]!.currency.symbol} balance`;
-        }
-    }, [currencyBalances, derivedSwap, parsedAmounts]);
-
     const maxInputAmount: CurrencyAmount<Currency> | undefined = maxAmountSpend(currencyBalances[SwapField.INPUT]);
     const showMaxButton = Boolean(maxInputAmount?.greaterThan(0));
 
