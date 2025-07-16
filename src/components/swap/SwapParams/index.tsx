@@ -52,7 +52,7 @@ const SwapParams = ({
                     className="flex items-center w-full text-md mb-1 text-center text-black bg-card-dark py-1 px-3 rounded-lg"
                     onClick={() => toggleExpanded(!isExpanded)}
                 >
-                    {fee ? (
+                    {fee !== undefined ? (
                         <div className="rounded select-none pointer px-1.5 py-1 flex items-center relative">
                             {dynamicFeePlugin && <ZapIcon className="mr-2" strokeWidth={1} stroke="black" fill="black" size={16} />}
                             <span>{`${fee?.toFixed(4)}% fee`}</span>

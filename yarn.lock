@@ -620,10 +620,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@cryptoalgebra/router-custom-pools-and-sliding-fee@npm:@cryptoalgebra/router-clamm-base@1.4.6":
-  version "1.4.6"
-  resolved "https://registry.yarnpkg.com/@cryptoalgebra/router-clamm-base/-/router-clamm-base-1.4.6.tgz#d86bf0aed71a0db471a2011b3f22ecef98858685"
-  integrity sha512-ExCCRD70XRyIE0gZmDc7cru1N5mAey9MifVjeDmeGQR565mk9Qu/zXSCmCAXkotsnxkPUvRxkGqBppDOqdGKUQ==
+"@cryptoalgebra/router-custom-pools-and-sliding-fee@npm:@cryptoalgebra/router-clamm-base@1.4.7":
+  version "1.4.7"
+  resolved "https://registry.yarnpkg.com/@cryptoalgebra/router-clamm-base/-/router-clamm-base-1.4.7.tgz#758fb6c812928093e4e41368c528152c25ba8d0f"
+  integrity sha512-jLJYawevYOiNapB/5jhusIe4+JismZ+xv8OpURHeV+pJ31Wkt231ngSvszcilnA9YUR8UcrPrkP/rzkFxnaBsQ==
   dependencies:
     "@cryptoalgebra/custom-pools-sdk" "npm:@cryptoalgebra/clamm-base-sdk@1.1.0"
     "@pancakeswap/sdk" "5.7.6"
