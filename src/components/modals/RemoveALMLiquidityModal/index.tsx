@@ -76,7 +76,7 @@ const RemoveALMLiquidityModal = ({ userVault, poolAddress }: RemoveALMLiquidityM
         const shareToWithdraw = BigNumber.from(lpShareToWithdraw.quotient.toString());
         try {
             let tx;
-            if (!useNative) {
+            if (useNative) {
                 tx = await withdrawNativeToken(
                     account,
                     shareToWithdraw,
