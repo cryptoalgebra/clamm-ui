@@ -215,7 +215,7 @@ export function AnalyticsPoolPage() {
                         </Link>
                         <Link className="col-span-1 w-full" to={`/pool/${poolId}/new-position`}>
                             <Button
-                                className="bg-primary-300 text-bg-100 w-full gap-2 rounded-xl hover:bg-primary-300 max-md:text-sm"
+                                className="bg-primary-300 w-full gap-2 rounded-xl hover:bg-primary-300 max-md:text-sm"
                                 variant={"default"}
                                 size={"lg"}
                             >

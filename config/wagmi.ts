@@ -1,5 +1,5 @@
 import { ContractConfig } from "@wagmi/cli";
-import { AppKitNetwork, baseSepolia } from "@reown/appkit/networks";
+import { AppKitNetwork, base, baseSepolia } from "@reown/appkit/networks";
 import {
     algebraBasePluginV1ABI,
     algebraCustomPoolEntryPointABI,
@@ -24,7 +24,7 @@ import {
 } from "./contract-addresses";
 
 /* configure supported networks here */
-export const wagmiNetworks: [AppKitNetwork, ...AppKitNetwork[]] = [baseSepolia];
+export const wagmiNetworks: [AppKitNetwork, ...AppKitNetwork[]] = [base, baseSepolia];
 
 const rawContracts = [
     { name: "AlgebraFactory", abi: algebraFactoryABI },

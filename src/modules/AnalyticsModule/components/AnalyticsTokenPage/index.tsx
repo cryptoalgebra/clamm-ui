@@ -187,7 +187,7 @@ export function AnalyticsTokenPage() {
                         </Link>
                         <Link className="col-span-1 w-full" to={"/pools"}>
                             <Button
-                                className="bg-primary-300 w-full h-full text-bg-100 gap-2 rounded-xl hover:bg-primary-300 max-md:text-sm"
+                                className="bg-primary-300 w-full h-full gap-2 rounded-xl hover:bg-primary-300 max-md:text-sm"
                                 variant={"default"}
                                 size={"lg"}
                             >

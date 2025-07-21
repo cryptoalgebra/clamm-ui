@@ -1,6 +1,6 @@
 import Navigation from "@/components/common/Navigation";
-import AlgebraLogo from "@/assets/algebra-logo.svg";
-import AlgebraIntegral from "@/assets/algebra-itegral.svg";
+// import AlgebraLogo from "@/assets/clamm-single-logo.svg";
+import AlgebraIntegral from "@/assets/clamm-logo.svg";
 import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { AlignJustify, UnplugIcon, WalletIcon } from "lucide-react";
@@ -26,9 +26,9 @@ const Algebra = () => (
     <div className="flex items-center gap-2">
         <NavLink to={"/"}>
             <div className="flex items-center gap-2 rounded-3xl duration-200">
-                <div className="flex items-center justify-center w-[32px] h-[32px] rounded-full">
+                {/* <div className="flex items-center justify-center w-[32px] h-[32px] rounded-full">
                     <img src={AlgebraLogo} width={25} height={25} />
-                </div>
+                </div> */}
                 <img className="hidden md:block" src={AlgebraIntegral} width={140} height={25} />
             </div>
         </NavLink>
