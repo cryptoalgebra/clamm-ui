@@ -8,7 +8,7 @@ export const CUSTOM_POOL_DEPLOYER_ADDRESSES: Record<PoolDeployerType, Record<num
         [ChainId.Base]: ADDRESS_ZERO,
         [ChainId.BaseSepolia]: ADDRESS_ZERO,
     },
-    /* replace with `undefined` to disable custom pools logic */
+    /* Replace with `undefined` to use as a stub */
     LIMIT_ORDERS: {
         [ChainId.Base]: "0xf3b57fe4d5d0927c3a5e549cb6af1866687e2d62",
         [ChainId.BaseSepolia]: "0x9089f3440c8e7534afcfec2b731c4d6b78876308",

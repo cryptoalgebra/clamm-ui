@@ -82,7 +82,7 @@ const Account = () => {
         );
 
     return (
-        <div className="flex h-full justify-end gap-4 whitespace-nowrap">
+        <div className="flex h-full justify-end items-center gap-4 whitespace-nowrap">
             <div className="hidden md:block">
                 <w3m-button balance={pendingTxCount > 0 ? "hide" : "show"} />
             </div>
