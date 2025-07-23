@@ -2,14 +2,17 @@ import { IDerivedSwapInfo } from "@/state/swapStore";
 import { CurrenciesInfoHeader } from "@/components/common/CurrenciesInfoHeader";
 import { useMemo, useState } from "react";
 import { CHART_SPAN, CHART_VIEW, ChartSpanType, POOL_CHART_TYPE } from "@/types/swap-chart";
-import { computePoolAddress } from "@cryptoalgebra/custom-pools-sdk";
+import { computeCustomPoolAddress, computePoolAddress } from "@cryptoalgebra/custom-pools-sdk";
 import { Chart } from "@/components/common/Chart";
 import { PoolState, usePool } from "@/hooks/pools/usePool";
 import { Address } from "viem";
 import { BarChart3Icon } from "lucide-react";
 import { usePoolChartData } from "@/hooks/analytics";
+import { CUSTOM_POOL_DEPLOYER_ADDRESSES } from "config/custom-pool-deployer";
+import { useChainId } from "wagmi";
 
 const SwapChart = ({ derivedSwap }: { derivedSwap: IDerivedSwapInfo }) => {
+    const chainId = useChainId();
     const { currencies } = derivedSwap;
     const [tokenA, tokenB] = [currencies.INPUT, currencies.OUTPUT];
 
@@ -17,11 +20,15 @@ const SwapChart = ({ derivedSwap }: { derivedSwap: IDerivedSwapInfo }) => {
 
     const poolId = useMemo(() => {
         if (!tokenA || !tokenB) return undefined;
-        return computePoolAddress({
-            tokenA: tokenA.wrapped,
-            tokenB: tokenB.wrapped,
-        });
-    }, [tokenA, tokenB]);
+
+        return CUSTOM_POOL_DEPLOYER_ADDRESSES.ALM[chainId]
+            ? computeCustomPoolAddress({
+                  tokenA: tokenA.wrapped,
+                  tokenB: tokenB.wrapped,
+                  customPoolDeployer: CUSTOM_POOL_DEPLOYER_ADDRESSES.ALM[chainId],
+              })
+            : computePoolAddress({ tokenA: tokenA.wrapped, tokenB: tokenB.wrapped });
+    }, [chainId, tokenA, tokenB]);
 
     const [poolStateType] = usePool(poolId as Address);
     const isPoolExists = poolStateType === PoolState.EXISTS;
