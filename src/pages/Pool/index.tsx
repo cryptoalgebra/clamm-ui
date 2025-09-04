@@ -177,14 +177,14 @@ const PoolPage = () => {
                         outOfRange: false,
                         range: "ALM Managed",
                         liquidityUSD: vault.amountsUsd,
-                        feesUSD: null,
+                        feesUSD: vault.feesUsd,
                         apr: Math.abs(vault.vault.apr),
                         onFarming: vault.onFarming,
                         rangeLength: 0,
                         position: null,
                         almShares: vault.shares,
                         almVaultAddress: vault.vault.id,
-                    }) as FormattedPosition
+                    } as FormattedPosition)
             ) || [];
 
         return [...almPositionsData, ...positionsData];

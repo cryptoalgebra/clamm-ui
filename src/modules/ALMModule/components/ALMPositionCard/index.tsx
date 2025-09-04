@@ -7,6 +7,7 @@ import { UserALMVault } from "../../hooks";
 import { AddALMLiquidityModal, RemoveALMLiquidityModal } from "..";
 import { HarvestAndExitALMFarmingCard } from "../HarvestAndExitALMFarmingCard";
 import { Farming } from "@/types/farming-info";
+import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
 
 interface ALMPositionCardProps {
     userVault: UserALMVault | undefined;
@@ -26,6 +27,10 @@ export const ALMPositionCard = ({ userVault, poolAddress, farming }: ALMPosition
 
     const pnl = Number(userVault.pnl);
 
+    const fees0 = Number(userVault.fees0);
+    const fees1 = Number(userVault.fees1);
+    const feesUsd = Number(userVault.feesUsd);
+
     return (
         <div className="flex flex-col gap-6 bg-card border border-card-border rounded-xl p-4 animate-fade-in">
             <div className="relative flex w-full justify-end text-right">
@@ -36,7 +41,7 @@ export const ALMPositionCard = ({ userVault, poolAddress, farming }: ALMPosition
                 />
                 <div className="flex flex-col gap-4 w-full">
                     <h2 className="scroll-m-20 text-2xl font-bold tracking-tight lg:text-2xl">{userVault.vault.name}</h2>
-                    <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-6">
                         <div>
                             <div className="font-bold text-xs">LIQUIDITY</div>
                             <div className="font-semibold text-2xl">
@@ -65,6 +70,43 @@ export const ALMPositionCard = ({ userVault, poolAddress, farming }: ALMPosition
                                         {formatAmount(Number(pnl), 6)} {userVault.vault.depositToken.symbol}
                                     </span>
                                 </div>
+                            </div>
+                        </div>
+                        <div className="flex w-full justify-between bg-card-dark p-4 rounded-lg">
+                            <div className="text-left">
+                                <div className="font-bold text-xs">FEES EARNED</div>
+                                <HoverCard closeDelay={0} openDelay={0}>
+                                    <HoverCardTrigger>
+                                        <span className="text-primary-200  font-semibold text-2xl drop-shadow-cyan border-b border-dotted border-primary-200 cursor-pointer">
+                                            ${formatAmount(feesUsd, 4)}
+                                        </span>
+                                    </HoverCardTrigger>
+                                    <HoverCardContent side="bottom" className="flex flex-col gap-2 p-2">
+                                        <h4>Tokens</h4>
+                                        <div className="flex flex-col p-2 gap-2 bg-card-dark rounded-lg">
+                                            <div className="flex items-center gap-6 justify-between">
+                                                <div className="flex gap-2 items-center">
+                                                    <CurrencyLogo className="inline" currency={token0} size={20} />
+                                                    <span>{token0?.symbol}</span>
+                                                </div>
+
+                                                <div className="flex gap-1 items-end">
+                                                    <span>{formatAmount(fees0 || 0, 6)}</span>
+                                                </div>
+                                            </div>
+                                            <div className="flex items-center gap-6 justify-between">
+                                                <div className="flex gap-2 items-center">
+                                                    <CurrencyLogo className="inline" currency={token1} size={20} />
+                                                    <span>{token1?.symbol}</span>
+                                                </div>
+
+                                                <div className="flex gap-1 items-end">
+                                                    <span>{formatAmount(fees1 || 0, 6)}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </HoverCardContent>
+                                </HoverCard>
                             </div>
                         </div>
                     </div>

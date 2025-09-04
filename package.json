@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "@apollo/client": "^3.8.4",
-        "@cryptoalgebra/alm-sdk": "^1.0.9",
+        "@cryptoalgebra/alm-sdk": "^1.0.10",
         "@cryptoalgebra/custom-pools-sdk": "npm:@cryptoalgebra/clamm-base-sdk@1.2.0",
         "@cryptoalgebra/router-custom-pools-and-sliding-fee": "npm:@cryptoalgebra/router-clamm-base@1.4.9",
         "@radix-ui/react-avatar": "^1.0.4",
