@@ -29,7 +29,7 @@ import { Address } from "viem";
 import { useWriteAlgebraCustomPoolEntryPointCreateCustomPool, useWriteNonfungiblePositionManagerMulticall } from "@/generated";
 import { cn } from "@/utils";
 
-type PoolDeployerType = (typeof CUSTOM_POOL_DEPLOYER_TITLES)[keyof typeof CUSTOM_POOL_DEPLOYER_TITLES];
+type PoolDeployerType = typeof CUSTOM_POOL_DEPLOYER_TITLES[keyof typeof CUSTOM_POOL_DEPLOYER_TITLES];
 
 const CreatePoolForm = () => {
     const { address: account } = useAccount();
@@ -59,7 +59,8 @@ const CreatePoolForm = () => {
     const customPoolDeployerAddresses = useMemo(
         () => ({
             [CUSTOM_POOL_DEPLOYER_TITLES.BASE]: CUSTOM_POOL_DEPLOYER_ADDRESSES.BASE[chainid],
-            [CUSTOM_POOL_DEPLOYER_TITLES.ALL_INCLUSIVE]: CUSTOM_POOL_DEPLOYER_ADDRESSES.ALL_INCLUSIVE[chainid],
+            [CUSTOM_POOL_DEPLOYER_TITLES.ALM]: CUSTOM_POOL_DEPLOYER_ADDRESSES.ALM[chainid],
+            [CUSTOM_POOL_DEPLOYER_TITLES.LIMIT_ORDERS]: CUSTOM_POOL_DEPLOYER_ADDRESSES.LIMIT_ORDERS[chainid],
         }),
         [chainid]
     );
@@ -74,7 +75,7 @@ const CreatePoolForm = () => {
 
     const customPoolsAddresses =
         enabledModules.customPools && areCurrenciesSelected && !isSameToken
-            ? [CUSTOM_POOL_DEPLOYER_ADDRESSES.ALL_INCLUSIVE[chainid]]
+            ? [CUSTOM_POOL_DEPLOYER_ADDRESSES.ALM[chainid]]
                   .filter((deployer): deployer is Address => deployer !== undefined)
                   .map(
                       (customPoolDeployer) =>
@@ -90,11 +91,13 @@ const CreatePoolForm = () => {
 
     // TODO
     const [poolState0] = usePool(customPoolsAddresses[0]);
+    const [poolState1] = usePool(customPoolsAddresses[1]);
 
     const isPoolExists = poolState === PoolState.EXISTS && poolDeployer === CUSTOM_POOL_DEPLOYER_TITLES.BASE;
-    const isPool0Exists = poolState0 === PoolState.EXISTS && poolDeployer === CUSTOM_POOL_DEPLOYER_TITLES.ALL_INCLUSIVE;
+    const isPool0Exists = poolState0 === PoolState.EXISTS && poolDeployer === CUSTOM_POOL_DEPLOYER_TITLES.ALM;
+    const isPool1Exists = poolState1 === PoolState.EXISTS && poolDeployer === CUSTOM_POOL_DEPLOYER_TITLES.LIMIT_ORDERS;
 
-    const isSelectedCustomPoolExists = isPoolExists || isPool0Exists;
+    const isSelectedCustomPoolExists = isPoolExists || isPool0Exists || isPool1Exists;
 
     const mintInfo = useDerivedMintInfo(
         currencyA ?? undefined,

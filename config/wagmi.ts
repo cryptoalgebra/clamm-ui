@@ -25,6 +25,37 @@ import {
 import { defineChain } from "viem";
 import { algebraVirtualPoolABI } from "./abis/farming/algebraVirtualPool";
 
+const baseChain = defineChain({
+    id: 8453,
+    network: "base",
+    name: "Base",
+    nativeCurrency: { name: "Base Ether", symbol: "ETH", decimals: 18 },
+    rpcUrls: {
+        default: {
+            http: ["https://base.gateway.tenderly.co/4q52tUempJuHciTWl5m1Ef"],
+        },
+        public: {
+            http: ["https://base.gateway.tenderly.co/4q52tUempJuHciTWl5m1Ef"],
+        },
+    },
+    blockExplorers: {
+        etherscan: {
+            name: "BaseScan",
+            url: "https://basescan.org",
+        },
+        default: {
+            name: "BaseScan",
+            url: "https://basescan.org",
+        },
+    },
+    contracts: {
+        multicall3: {
+            address: "0xfe3becd788320465ab649015f34f7771220a88b2",
+            blockCreated: 24170245,
+        },
+    },
+});
+
 const baseSepoliaChain = /*#__PURE__*/ defineChain({
     id: 84532,
     network: "baseSepolia",
@@ -57,7 +88,7 @@ const baseSepoliaChain = /*#__PURE__*/ defineChain({
 });
 
 /* configure supported networks here */
-export const wagmiNetworks: [AppKitNetwork, ...AppKitNetwork[]] = [baseSepoliaChain];
+export const wagmiNetworks: [AppKitNetwork, ...AppKitNetwork[]] = [baseChain, baseSepoliaChain];
 
 const rawContracts = [
     { name: "AlgebraFactory", abi: algebraFactoryABI },

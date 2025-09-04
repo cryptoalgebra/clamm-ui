@@ -14,11 +14,11 @@ const PoolsPage = () => {
                 </div>
                 <Link className="col-span-1 w-full" to={"create"}>
                     <Button
-                        className="whitespace-nowrap h-16 w-full gap-3 rounded-xl sm:text-lg! hover:bg-primary-300 bg-primary-300 text-black"
+                        className="whitespace-nowrap h-16 w-full gap-3 rounded-xl sm:text-lg! hover:bg-accent-100 bg-accent-100 text-black"
                         size={"md"}
                     >
                         Create a Pool
-                        <div className="rounded-full p-1 bg-black">
+                        <div className="rounded-full p-1 bg-white">
                             <Plus size={20} className="text-text-100" />
                         </div>
                     </Button>

@@ -12,11 +12,11 @@ const PoolHeader = () => {
 
             <Link className="col-span-1 w-full" to={"new-position"}>
                 <Button
-                    className="whitespace-nowrap h-16 w-full gap-3 rounded-xl text-lg! hover:bg-primary-300 bg-primary-300 text-black"
+                    className="whitespace-nowrap h-16 w-full gap-3 rounded-xl text-lg! hover:bg-accent-100 bg-accent-100 text-black"
                     size={"md"}
                 >
                     Create Position
-                    <div className="rounded-full p-1 bg-black">
+                    <div className="rounded-full p-1 bg-white">
                         <Plus size={20} className="text-text-100" />
                     </div>
                 </Button>

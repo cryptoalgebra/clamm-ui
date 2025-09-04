@@ -33,7 +33,7 @@ interface ChartProps {
     zoom: number;
 }
 
-const CustomBar = ({ x, y, width, height, percent, isCurrent, fill }: CustomBarProps) => {
+const CustomBar = ({ x, y, width, height, percent, fill }: CustomBarProps) => {
     return (
         <g>
             <defs>
@@ -47,11 +47,11 @@ const CustomBar = ({ x, y, width, height, percent, isCurrent, fill }: CustomBarP
                     0
                 )}%`}</text>
             )}
-            {isCurrent && (
+            {/* {isCurrent && (
                 <text x={x + 10} y={y - 10} fill="white" fontSize={"14px"} fontWeight={600} textAnchor="middle">
                     Current Price
                 </text>
-            )}
+            )} */}
             <rect
                 x={x}
                 y={y}
@@ -59,10 +59,10 @@ const CustomBar = ({ x, y, width, height, percent, isCurrent, fill }: CustomBarP
                     fill === "primary"
                         ? "fill-primary-200"
                         : fill === "accent"
-                          ? "fill-accent"
-                          : fill === "muted"
-                            ? "fill-muted"
-                            : "fill-accent-foreground"
+                        ? "fill-accent"
+                        : fill === "muted"
+                        ? "fill-muted"
+                        : "fill-accent-foreground"
                 )}
                 width={width > 0 ? width : 0}
                 height={height}

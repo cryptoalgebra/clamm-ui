@@ -38,7 +38,7 @@ export function NavButtons() {
     const setNavlinkClasses = (paths: string[]) =>
         paths.some((path) => matchPath(path, pathname))
             ? "bg-primary-100/20 text-primary-200 font-bold shadow-md"
-            : "text-muted-foreground hover:bg-white/10";
+            : "text-muted-foreground hover:bg-text-100/10";
 
     return (
         <>

@@ -1,6 +1,5 @@
 import { Navigation } from "@/components/common/Navigation";
-import AlgebraLogo from "@/assets/algebra-logo.svg";
-import AlgebraIntegral from "@/assets/algebra-itegral.svg";
+import AlgebraIntegral from "@/assets/clamm-logo.svg";
 import { NavLink } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ChevronDown, Clock, WalletIcon } from "lucide-react";
@@ -28,9 +27,9 @@ export const Algebra = () => (
     <div className="flex items-center  gap-2 w-full p-2">
         <NavLink to={"/"}>
             <div className="flex items-center gap-2 md:mr-2 rounded-3xl duration-200">
-                <div className="flex items-center justify-center w-[32px] h-[32px] rounded-lg">
+                {/* <div className="flex items-center justify-center w-[32px] h-[32px] rounded-lg">
                     <img src={AlgebraLogo} width={25} height={25} />
-                </div>
+                </div> */}
                 <img className="max-lg:hidden" src={AlgebraIntegral} width={140} height={25} />
             </div>
         </NavLink>
