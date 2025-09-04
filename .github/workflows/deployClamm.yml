@@ -1,4 +1,4 @@
-name: Algebra Integral Dev Deploy
+name: CLAMM Dex Deploy
 
 on:
     workflow_dispatch:
@@ -6,10 +6,10 @@ on:
             target:
                 description: "Environment"
                 required: true
-                default: "dev"
+                default: "clamm"
                 type: choice
                 options:
-                    - dev
+                    - clamm
 
 jobs:
     deploy:
@@ -19,10 +19,10 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v3
 
-            - name: Set dev target path
-              if: ${{ inputs.target == 'dev' }}
+            - name: Set clamm target path
+              if: ${{ inputs.target == 'clamm' }}
               run: |
-                  echo "TARGET_PATH=${{ secrets.DEV_DEPLOYMENT_PATH }}" >> $GITHUB_ENV
+                  echo "TARGET_PATH=${{ secrets.CLAMM_DEPLOYMENT_PATH }}" >> $GITHUB_ENV
 
             - name: Set up node
               uses: actions/setup-node@v3
