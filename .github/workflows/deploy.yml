@@ -1,4 +1,4 @@
-name: Deploy to app.clamm.io
+name: Deploy
 
 on:
     workflow_dispatch:
@@ -6,10 +6,11 @@ on:
             target:
                 description: "Environment"
                 required: true
-                default: "clamm"
+                default: "dev.clamm.io"
                 type: choice
                 options:
-                    - clamm
+                    - app.clamm.io
+                    - dev.clamm.io
 
 jobs:
     deploy:
@@ -19,10 +20,15 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v3
 
-            - name: Set clamm target path
-              if: ${{ inputs.target == 'clamm' }}
+            - name: Set app.clamm.io target path
+              if: ${{ inputs.target == 'app.clamm.io' }}
               run: |
                   echo "TARGET_PATH=${{ secrets.CLAMM_DEPLOYMENT_PATH }}" >> $GITHUB_ENV
+
+            - name: Set dev.clamm.io target path
+              if: ${{ inputs.target == 'dev.clamm.io' }}
+              run: |
+                  echo "TARGET_PATH=${{ secrets.DEV_CLAMM_DEPLOYMENT_PATH }}" >> $GITHUB_ENV
 
             - name: Set up node
               uses: actions/setup-node@v3
